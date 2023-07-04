@@ -24,9 +24,10 @@ jobs:
       - run: cargo build --release --all-features
       - run: |
           ls ${{github.workspace}}
+          ls ${{github.workspace}}/target
       - uses: actions/upload-artifact@v3
         with:
-          path: '${{github.workspace}}/dump_syms'
+          path: '${{github.workspace}}/target/dump_syms'
       
 
 
