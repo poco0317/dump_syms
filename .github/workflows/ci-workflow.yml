@@ -22,6 +22,8 @@ jobs:
         with:
           toolchain: stable
       - run: cargo build --release --all-features
+      - run: |
+          ls ${{github.workspace}}
       - uses: actions/upload-artifact@v3
         with:
           path: '${{github.workspace}}/dump_syms'
