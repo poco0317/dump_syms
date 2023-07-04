@@ -1,0 +1,31 @@
+name: dump syms
+on:
+  push:
+
+jobs:
+  macos:
+    name: macOS x64 ${{matrix.cfg.name}}
+    runs-on: ${{matrix.cfg.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        cfg:
+          #- { os: macos-10.15,  name: "Catalina", dist: false} # rendered useless by GHA
+          - { os: macos-13,     name: "Ventura", dist: false}
+          #- { os: macos-12,     name: "Monterey", dist: true}
+          #- { os: macos-11,     name: "Big Sur",  dist: true}
+
+    steps:
+
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - run: cargo build --release --all-features
+      - uses: actions/upload-artifacts@v3
+        with:
+          path: '${{github.workspace}}/dump_syms'
+      
+
+
+      
