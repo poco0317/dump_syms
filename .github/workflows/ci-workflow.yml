@@ -25,9 +25,10 @@ jobs:
       - run: |
           ls ${{github.workspace}}
           ls ${{github.workspace}}/target
+          ls ${{github.workspace}}/target/release
       - uses: actions/upload-artifact@v3
         with:
-          path: '${{github.workspace}}/target/dump_syms'
+          path: '${{github.workspace}}/target/release/dump_syms'
       
 
 
